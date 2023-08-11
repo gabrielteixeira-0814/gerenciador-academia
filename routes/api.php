@@ -26,7 +26,7 @@ use App\Http\Controllers\Api\UserController;
 
     // Users
     Route::prefix('user')->group(function() {
-            Route::get('/', [UserController::class, 'index'])->name('getListUser');
+            Route::get('/', [UserController::class, 'users'])->name('getListUser');
             Route::get('/{id}', [UserController::class, 'get'])->name('getUser');
             Route::post('/', [UserController::class, 'store'])->name('postUser');
             Route::post('/{id}', [UserController::class, 'update'])->name('putUser');
