@@ -25,11 +25,6 @@ use App\Http\Controllers\Api\EmployeeController;
 //     return $request->user();
 // });
 
-// Route::get('/user', function (Request $request) {
-//     return 'oola';
-// });
-
-
     // Route para api
     Route::post('login', 'PassportController@login');
     Route::post('register', 'PassportController@register');
@@ -49,19 +44,20 @@ use App\Http\Controllers\Api\EmployeeController;
         });
     });
 
-    Route::middleware('auth:api')->group(function () {
-        Route::get('user/details', 'PassportController@details');
-        Route::get('logout', 'PassportController@logout');
+Route::middleware('auth:api')->group(function () {
 
-        // Users
-        Route::prefix('user')->group(function() {
-            Route::get('/', [UserController::class, 'users'])->name('getListUser');
-            Route::get('/{id}', [UserController::class, 'get'])->name('getUser');
-            Route::post('/', [UserController::class, 'store'])->name('postUser');
-            Route::post('/{id}', [UserController::class, 'update'])->name('putUser');
-            Route::delete('/{id}', [UserController::class, 'delete'])->name('deleteUser');
+    Route::get('user/details', 'PassportController@details');
+    Route::get('logout', 'PassportController@logout');
 
-        });
+    // Users
+    Route::prefix('user')->group(function() {
+        Route::get('/', [UserController::class, 'users'])->name('getListUser');
+        Route::get('/{id}', [UserController::class, 'get'])->name('getUser');
+        Route::post('/', [UserController::class, 'store'])->name('postUser');
+        Route::post('/{id}', [UserController::class, 'update'])->name('putUser');
+        Route::delete('/{id}', [UserController::class, 'delete'])->name('deleteUser');
+
+    });
 
         // Client_type
     Route::prefix('client_type')->group(function() {
