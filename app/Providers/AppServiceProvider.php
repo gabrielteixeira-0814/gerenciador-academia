@@ -10,6 +10,9 @@ use App\Repositories\UserRepositoryEloquent;
 use App\Model\Client_type;
 use App\Repositories\Client_typeRepositoryEloquent;
 
+use App\Model\Client;
+use App\Repositories\ClientRepositoryEloquent;
+
 use App\Model\Maintenance;
 use App\Repositories\MaintenanceRepositoryEloquent;
 
@@ -40,6 +43,13 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Repositories\Client_typeRepositoryInterface', function(){
             return new Client_typeRepositoryEloquent(new Client_type());
+        });
+
+        // Client
+        $this->app->bind('App\Repositories\ClientRepositoryInterface', 'App\Repositories\ClientRepositoryEloquent');
+
+        $this->app->bind('App\Repositories\ClientRepositoryInterface', function(){
+            return new ClientRepositoryEloquent(new Client());
         });
 
         // Maintenance

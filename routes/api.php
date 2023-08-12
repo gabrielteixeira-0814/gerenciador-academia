@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\Client_typeController;
+use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\GadgetsController;
 use App\Http\Controllers\Api\EmployeeController;
@@ -44,6 +45,15 @@ use App\Http\Controllers\Api\EmployeeController;
         Route::post('/', [Client_typeController::class, 'store'])->name('postClient_type');
         Route::post('/{id}', [Client_typeController::class, 'update'])->name('putClient_type');
         Route::delete('/{id}', [Client_typeController::class, 'delete'])->name('deleteClient_type');
+    });
+
+    // Client
+    Route::prefix('client')->group(function() {
+        Route::get('/', [ClientController::class, 'clients'])->name('getListClient');
+        Route::get('/{id}', [ClientController::class, 'get'])->name('getClient');
+        Route::post('/', [ClientController::class, 'store'])->name('postClient');
+        Route::post('/{id}', [ClientController::class, 'update'])->name('putClient');
+        Route::delete('/{id}', [ClientController::class, 'delete'])->name('deleteClient');
     });
 
     // Maintenance
