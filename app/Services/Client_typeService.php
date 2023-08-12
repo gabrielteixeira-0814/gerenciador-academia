@@ -4,7 +4,6 @@ namespace App\Services;
 use App\Repositories\Client_typeRepositoryInterface;
 use Validator;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Hash;
 
 class Client_typeService
 {
