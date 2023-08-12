@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\Client_typeController;
 
 
 /*
@@ -32,3 +33,12 @@ use App\Http\Controllers\Api\UserController;
             Route::post('/{id}', [UserController::class, 'update'])->name('putUser');
             Route::delete('/{id}', [UserController::class, 'delete'])->name('deleteUser');
     });
+
+    // Client_type
+    Route::prefix('client_type')->group(function() {
+        Route::get('/', [Client_typeController::class, 'clients_type'])->name('getListClient_type');
+        Route::get('/{id}', [Client_typeController::class, 'get'])->name('getClient_type');
+        Route::post('/', [Client_typeController::class, 'store'])->name('postClient_type');
+        Route::post('/{id}', [Client_typeController::class, 'update'])->name('putClient_type');
+        Route::delete('/{id}', [Client_typeController::class, 'delete'])->name('deleteClient_type');
+});

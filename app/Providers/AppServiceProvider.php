@@ -7,6 +7,9 @@ use Illuminate\Support\ServiceProvider;
 use App\User;
 use App\Repositories\UserRepositoryEloquent;
 
+use App\Model\Client_type;
+use App\Repositories\Client_typeRepositoryEloquent;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -21,6 +24,13 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Repositories\UserRepositoryInterface', function(){
             return new UserRepositoryEloquent(new User());
+        });
+
+        // Client_type
+        $this->app->bind('App\Repositories\Client_typeRepositoryInterface', 'App\Repositories\Client_typeRepositoryEloquent');
+
+        $this->app->bind('App\Repositories\Client_typeRepositoryInterface', function(){
+            return new Client_typeRepositoryEloquent(new Client_type());
         });
     }
 
