@@ -4,7 +4,7 @@ namespace App\Services;
 use App\Repositories\UserRepositoryInterface;
 use Validator;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -31,42 +31,25 @@ class UserService
             'password.max' => 'É necessário no Máximo 10 caracteres na senha do usuário!',
             'password.confirmed' => 'É necessário confirmar a senha!',
 
-            'cpf.required' => 'O cpf do usuário é obrigatório!',
-            'cpf.min' => 'É necessário no mínimo 5 caracteres no cpf do usuário!',
-            'cpf.max' => 'É necessário no Máximo 15 caracteres no cpf do usuário!',
+            'type.required' => 'O tipo do usuário é obrigatório!',
+            'type.min' => 'É necessário no mínimo 5 caracteres no nome do usuário!',
+            'type.max' => 'É necessário no Máximo 255 caracteres no nome do usuário!',
 
-            'turn_id.required' => 'O id do turn é obrigatório!',
+            'is_enabled.required' => 'O is_enabled do usuário é obrigatório!',
 
-            'office_id.required' => 'O id do cargo é obrigatório!',
-
-            'sector_id.required' => 'O id do setor é obrigatório!',
-
-            'matricula.required' => 'A matricula do usuário é obrigatório!',
-            'matricula.min' => 'É necessário no mínimo 5 caracteres na matricula do usuário!',
-            'matricula.max' => 'É necessário no Máximo 25 caracteres na matricula do usuário!',
         ];
 
         $data = $request->validate([
             'name' => 'required|string|min:5|max:255',
             'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:5|max:10|confirmed',
-            'password_confirmation' => 'required|string|min:5|max:10',
-            'cpf' => 'required|string|min:5|max:15',
-            'matricula' => 'required|string|min:5|max:25',
-            //'image' => 'image',
-            'turn_id' => 'required',
-            'office_id' => 'required',
-            'sector_id' => 'required',
+            'password' => 'required|string|min:5|confirmed',
+            'password_confirmation' => 'required|string|min:5',
+            'type' => 'required|string|min:5',
+            'is_enabled' => 'required|boolean',
+
         ], $mensagens);
 
-
-        // $file = $data['image'];
-
-        // if($file) {
-        //     $nameFile = $file->getClientOriginalName();
-        //     $file = $file->storeAs('users', $nameFile);
-        //     $data['image'] = $file;
-        // }
+        $data['password'] = Hash::make($data['password']);
 
         return $this->repo->store($data);
     }
@@ -97,47 +80,39 @@ class UserService
             'password.max' => 'É necessário no Máximo 10 caracteres na senha do usuário!',
             'password.confirmed' => 'É necessário confirmar a senha!',
 
-            'cpf.required' => 'O cpf do usuário é obrigatório!',
-            'cpf.min' => 'É necessário no mínimo 5 caracteres no cpf do usuário!',
-            'cpf.max' => 'É necessário no Máximo 15 caracteres no cpf do usuário!',
+            'type.required' => 'O tipo do usuário é obrigatório!',
+            'type.min' => 'É necessário no mínimo 5 caracteres no nome do usuário!',
+            'type.max' => 'É necessário no Máximo 255 caracteres no nome do usuário!',
 
-            'turn_id.required' => 'O id do turn é obrigatório!',
+            'is_enabled.required' => 'O is_enabled do usuário é obrigatório!',
 
-            'office_id.required' => 'O id do cargo é obrigatório!',
-
-            'sector_id.required' => 'O id do setor é obrigatório!',
-
-            'matricula.required' => 'A matricula do usuário é obrigatório!',
-            'matricula.min' => 'É necessário no mínimo 5 caracteres na matricula do usuário!',
-            'matricula.max' => 'É necessário no Máximo 25 caracteres na matricula do usuário!',
         ];
 
         $data = $request->validate([
             'name' => 'required|string|min:5|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:5|max:10|confirmed',
-            'password_confirmation' => 'min:5|max:10',
-            'cpf' => 'required|string|min:5|max:15',
-            'matricula' => 'required|string|min:5|max:25',
-            'image' => 'image',
-            'turn_id' => 'required',
-            'office_id' => 'required',
-            'sector_id' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|string|min:5|confirmed',
+            'password_confirmation' => 'required|string|min:5',
+            'type' => 'required|string|min:5',
+            'is_enabled' => 'required|boolean',
+
         ], $mensagens);
 
-        // Upload de imagem
-        $file = $data['image'];
+        $data['password'] = Hash::make($data['password']);
 
-        if($file) {
-            $nameFile = $file->getClientOriginalName();
+        // // Upload de imagem
+        // $file = $data['image'];
 
-            // Encontrar arquivo antigo para deletar
-            $oldFile = $this->repo->get($id); // encontrar dados do usuário
-            Storage::disk('public')->delete("$oldFile->image");
+        // if($file) {
+        //     $nameFile = $file->getClientOriginalName();
 
-            $file = $file->storeAs('users', $nameFile);
-            $data['image'] = $file;
-        }
+        //     // Encontrar arquivo antigo para deletar
+        //     $oldFile = $this->repo->get($id); // encontrar dados do usuário
+        //     Storage::disk('public')->delete("$oldFile->image");
+
+        //     $file = $file->storeAs('users', $nameFile);
+        //     $data['image'] = $file;
+        // }
 
         return $this->repo->update($data, $id);
     }
