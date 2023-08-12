@@ -29,16 +29,41 @@ use App\Http\Controllers\Api\EmployeeController;
 //     return 'oola';
 // });
 
-    // Users
-    Route::prefix('user')->group(function() {
+
+    // Route para api
+    Route::post('login', 'PassportController@login');
+    Route::post('register', 'PassportController@register');
+
+    Route::middleware('auth:api')->group(function () {
+        Route::get('user/details', 'PassportController@details');
+        Route::get('logout', 'PassportController@logout');
+
+        // Users
+        Route::prefix('user')->group(function() {
             Route::get('/', [UserController::class, 'users'])->name('getListUser');
             Route::get('/{id}', [UserController::class, 'get'])->name('getUser');
             Route::post('/', [UserController::class, 'store'])->name('postUser');
             Route::post('/{id}', [UserController::class, 'update'])->name('putUser');
             Route::delete('/{id}', [UserController::class, 'delete'])->name('deleteUser');
+
+        });
     });
 
-    // Client_type
+    Route::middleware('auth:api')->group(function () {
+        Route::get('user/details', 'PassportController@details');
+        Route::get('logout', 'PassportController@logout');
+
+        // Users
+        Route::prefix('user')->group(function() {
+            Route::get('/', [UserController::class, 'users'])->name('getListUser');
+            Route::get('/{id}', [UserController::class, 'get'])->name('getUser');
+            Route::post('/', [UserController::class, 'store'])->name('postUser');
+            Route::post('/{id}', [UserController::class, 'update'])->name('putUser');
+            Route::delete('/{id}', [UserController::class, 'delete'])->name('deleteUser');
+
+        });
+
+        // Client_type
     Route::prefix('client_type')->group(function() {
         Route::get('/', [Client_typeController::class, 'clients_type'])->name('getListClient_type');
         Route::get('/{id}', [Client_typeController::class, 'get'])->name('getClient_type');
@@ -82,3 +107,4 @@ use App\Http\Controllers\Api\EmployeeController;
         Route::post('/{id}', [EmployeeController::class, 'update'])->name('putEmployee');
         Route::delete('/{id}', [EmployeeController::class, 'delete'])->name('deleteEmployee');
     });
+});
