@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\Client_typeController;
 use App\Http\Controllers\Api\MaintenanceController;
+use App\Http\Controllers\Api\GadgetsController;
 
 
 /*
@@ -51,4 +52,13 @@ use App\Http\Controllers\Api\MaintenanceController;
         Route::post('/', [MaintenanceController::class, 'store'])->name('postMaintenance');
         Route::post('/{id}', [MaintenanceController::class, 'update'])->name('putMaintenance');
         Route::delete('/{id}', [MaintenanceController::class, 'delete'])->name('deleteMaintenance');
+    });
+
+    // Gadgets
+    Route::prefix('gadgets')->group(function() {
+        Route::get('/', [GadgetsController::class, 'gadgets'])->name('getListGadgets');
+        Route::get('/{id}', [GadgetsController::class, 'get'])->name('getGadgets');
+        Route::post('/', [GadgetsController::class, 'store'])->name('postGadgets');
+        Route::post('/{id}', [GadgetsController::class, 'update'])->name('putGadgets');
+        Route::delete('/{id}', [GadgetsController::class, 'delete'])->name('deleteGadgets');
     });

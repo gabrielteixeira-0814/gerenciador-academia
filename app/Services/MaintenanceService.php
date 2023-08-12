@@ -17,10 +17,10 @@ class MaintenanceService
     public function store($request)
     {
         $mensagens = [
-            'gadgets_id.required' => 'O nome do aparelho é obrigatório!',
+            'gadgets_id.required' => 'O id do aparelho é obrigatório!',
             'gadgets_id.int' => 'É necessário se do tipo INT!',
 
-            'date.required' => 'O data do de aparelho é obrigatório!',
+            'date.required' => 'O data da manutenção do aparelho é obrigatório!',
             'date.date' => 'É necessario se do tipo data!',
 
             'interval.required' => 'O intervalo da manutenção do aparelho é obrigatório!',
