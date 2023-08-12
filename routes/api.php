@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\Client_typeController;
 use App\Http\Controllers\Api\MaintenanceController;
 use App\Http\Controllers\Api\GadgetsController;
+use App\Http\Controllers\Api\EmployeeController;
 
 
 /*
@@ -61,4 +62,13 @@ use App\Http\Controllers\Api\GadgetsController;
         Route::post('/', [GadgetsController::class, 'store'])->name('postGadgets');
         Route::post('/{id}', [GadgetsController::class, 'update'])->name('putGadgets');
         Route::delete('/{id}', [GadgetsController::class, 'delete'])->name('deleteGadgets');
+    });
+
+    // Employee
+    Route::prefix('employee')->group(function() {
+        Route::get('/', [EmployeeController::class, 'employees'])->name('getListEmployee');
+        Route::get('/{id}', [EmployeeController::class, 'get'])->name('getEmployee');
+        Route::post('/', [EmployeeController::class, 'store'])->name('postEmployee');
+        Route::post('/{id}', [EmployeeController::class, 'update'])->name('putEmployee');
+        Route::delete('/{id}', [EmployeeController::class, 'delete'])->name('deleteEmployee');
     });

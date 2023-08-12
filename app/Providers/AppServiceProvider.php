@@ -16,6 +16,9 @@ use App\Repositories\MaintenanceRepositoryEloquent;
 use App\Model\Gadgets;
 use App\Repositories\GadgetsRepositoryEloquent;
 
+use App\Model\Employee;
+use App\Repositories\EmployeeRepositoryEloquent;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -51,6 +54,13 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Repositories\GadgetsRepositoryInterface', function(){
             return new GadgetsRepositoryEloquent(new Gadgets());
+        });
+
+        // Employee
+        $this->app->bind('App\Repositories\EmployeeRepositoryInterface', 'App\Repositories\EmployeeRepositoryEloquent');
+
+        $this->app->bind('App\Repositories\EmployeeRepositoryInterface', function(){
+            return new EmployeeRepositoryEloquent(new Employee());
         });
     }
 
