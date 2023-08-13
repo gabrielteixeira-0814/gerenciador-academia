@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Client_typeController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\GadgetsController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +26,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Users
+Route::get('/', [UserController::class, 'index']);
+// Route::get('/', [UserController::class, 'users'])->name('getListUser');
+Route::get('/{id}', [UserController::class, 'get'])->name('getUser');
+Route::post('/', [UserController::class, 'store'])->name('postUser');
+Route::post('/{id}', [UserController::class, 'update'])->name('putUser');
+Route::delete('/{id}', [UserController::class, 'delete'])->name('deleteUser');
+Route::resource('user', 'UserController');
+
