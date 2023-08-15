@@ -28,6 +28,20 @@
                     </p>
                 </div>
             </div>
+            @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul style="list-style: none;">
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+            @endif
+            @if (\Session::has('error'))
+                <div class="alert alert-danger">
+                    <ul style="list-style: none;">
+                        <li>{!! \Session::get('error') !!}</li>
+                    </ul>
+                </div>
+            @endif
             <!-- Table with stripped rows -->
             <table class="table datatable">
               <thead>
@@ -51,7 +65,7 @@
                     <td>
                         <a href='{{route('user.show',$user->id)}}' class='btn btn-secondary btn-sm'><i class="bi bi-eye-fill"></i></a>
                         <a href='{{route('user.edit',$user->id)}}' class='btn btn-success btn-sm'><i class="bi bi-pencil"></i></a>
-                        <a href="{{route('user.destroy',$user->id)}}" class='btn btn-danger btn-sm'><i class="bi bi-trash-fill"></i></a>
+                        <a href="{{route('deleteUser',$user->id)}}" class='btn btn-danger btn-sm'><i class="bi bi-trash-fill"></i></a>
                     </td>
                   </tr>
                 @endforeach

@@ -86,6 +86,10 @@ class UserController extends Controller
 
     public function delete($id)
     {
-        return $this->service->destroy($id);
+        if (!$this->service->destroy($id)) {
+            return back()->with('error', 'Não foi possível excluir o usuário!');
+        }
+
+        return back()->with('success', 'Usuário criado com sucesso.');
     }
 }
