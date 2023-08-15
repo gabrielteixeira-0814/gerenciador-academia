@@ -36,3 +36,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::delete('/{id}', [UserController::class, 'delete'])->name('deleteUser');
 Route::resource('user', 'UserController');
 
+

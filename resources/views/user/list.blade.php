@@ -36,8 +36,8 @@
                   <th scope="col">Name</th>
                   <th scope="col">E-mail</th>
                   <th scope="col">Tipo</th>
-                  <th scope="col">Cadastro</th>
                   <th scope="col">Status</th>
+                  <th scope="col">Ações</th>
                 </tr>
               </thead>
               <tbody>
@@ -47,8 +47,12 @@
                     <td>{{ $user->name ?? '-' }}</td>
                     <td>{{ $user->email ?? '-' }}</td>
                     <td>{{ $user->type ?? '-' }}</td>
-                    <td>{{ $user->created_at ?? '-' }}</td>
                     <td>{{ $user->is_enabled ? 'Ativo' :  'Inativo' }}</td>
+                    <td>
+                        <a href='{{route('user.show',$user->id)}}' class='btn btn-secondary btn-sm'><i class="bi bi-eye-fill"></i></a>
+                        <a href='{{route('user.edit',$user->id)}}' class='btn btn-success btn-sm'><i class="bi bi-pencil"></i></a>
+                        <a href="{{route('user.destroy',$user->id)}}" class='btn btn-danger btn-sm'><i class="bi bi-trash-fill"></i></a>
+                    </td>
                   </tr>
                 @endforeach
               </tbody>

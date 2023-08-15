@@ -65,6 +65,20 @@ class UserController extends Controller
         return back()->with('success', 'Usuário criado com sucesso.');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $title_table = 'Usuário';
+        $title_action = 'Detalhes';
+        $data = $this->service->get($id);
+        return view('user.show', compact('data', 'title_table', 'title_action'));
+    }
+
     public function update(Request $request, $id)
     {
         return $this->service->update($request, $id);
