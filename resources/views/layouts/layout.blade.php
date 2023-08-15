@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang='pt-br'>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <head>

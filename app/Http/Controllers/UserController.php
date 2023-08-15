@@ -8,7 +8,6 @@ use App\Services\UserService;
 
 class UserController extends Controller
 {
-
     private $service;
 
     /**
@@ -60,7 +59,10 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        return $this->service->store($request);
+        if (!$this->service->store($request)) {
+            return back()->with('error', 'Não foi possível criar o usuário!');
+        }
+        return back()->with('success', 'Usuário criado com sucesso.');
     }
 
     public function update(Request $request, $id)

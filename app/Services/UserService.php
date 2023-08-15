@@ -17,6 +17,11 @@ class UserService
 
     public function store($request)
     {
+
+        if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
+
         $mensagens = [
             'name.required' => 'O nome do usuário é obrigatório!',
             'name.min' => 'É necessário no mínimo 5 caracteres no nome do usuário!',
@@ -26,10 +31,13 @@ class UserService
             'email.email' => 'O e-mail é inválido',
             'email.unique' => 'O e-mail já existe',
 
-            'password.required' => 'O nome do usuário é obrigatório!',
+            'password.required' => 'A senha do usuário é obrigatório!',
             'password.min' => 'É necessário no mínimo 5 caracteres na senha usuário!',
             'password.max' => 'É necessário no Máximo 10 caracteres na senha do usuário!',
             'password.confirmed' => 'É necessário confirmar a senha!',
+
+            'password_confirmation.min' => 'A confirmação da senha do usuário é obrigatório!',
+            'password_confirmation.required' => 'É necessário no mínimo 5 caracteres na senha usuário para confirmar!',
 
             'type.required' => 'O tipo do usuário é obrigatório!',
             'type.min' => 'É necessário no mínimo 5 caracteres no nome do usuário!',
@@ -44,7 +52,7 @@ class UserService
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:5|confirmed',
             'password_confirmation' => 'required|string|min:5',
-            'type' => 'required|string|min:5',
+            'type' => 'required|string|min:2',
             'is_enabled' => 'required|boolean',
 
         ], $mensagens);
