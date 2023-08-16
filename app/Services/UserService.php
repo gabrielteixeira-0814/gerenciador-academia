@@ -74,6 +74,10 @@ class UserService
 
     public function update($request, $id)
     {
+        if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
+
         $mensagens = [
             'name.required' => 'O nome do usuário é obrigatório!',
             'name.min' => 'É necessário no mínimo 5 caracteres no nome do usuário!',
@@ -82,11 +86,6 @@ class UserService
             'email.required' => 'O email do usuário é obrigatório!',
             'email.email' => 'O e-mail é inválido',
             'email.unique' => 'O e-mail já existe',
-
-            'password.required' => 'O nome do usuário é obrigatório!',
-            'password.min' => 'É necessário no mínimo 5 caracteres na senha usuário!',
-            'password.max' => 'É necessário no Máximo 10 caracteres na senha do usuário!',
-            'password.confirmed' => 'É necessário confirmar a senha!',
 
             'type.required' => 'O tipo do usuário é obrigatório!',
             'type.min' => 'É necessário no mínimo 5 caracteres no nome do usuário!',
@@ -99,14 +98,10 @@ class UserService
         $data = $request->validate([
             'name' => 'required|string|min:5|max:255',
             'email' => 'required|email',
-            'password' => 'required|string|min:5|confirmed',
-            'password_confirmation' => 'required|string|min:5',
             'type' => 'required|string|min:5',
             'is_enabled' => 'required|boolean',
 
         ], $mensagens);
-
-        $data['password'] = Hash::make($data['password']);
 
         // // Upload de imagem
         // $file = $data['image'];
@@ -122,6 +117,7 @@ class UserService
         //     $data['image'] = $file;
         // }
 
+        // dd($data);
         return $this->repo->update($data, $id);
     }
 

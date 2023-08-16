@@ -44,7 +44,8 @@ class UserController extends Controller
     {
         $title_table = 'Usuários';
         $title_action = 'Formulário';
-        return view('user.form', compact('title_table', 'title_action'));
+        $title_function = 'Criar';
+        return view('user.form', compact('title_table', 'title_action', 'title_function'));
     }
 
     public function users()
@@ -79,9 +80,31 @@ class UserController extends Controller
         return view('user.show', compact('data', 'title_table', 'title_action'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $title_table = 'Usuário';
+        $title_action = 'Formulário';
+        $title_function = 'Editar';
+
+        if (!($data = $this->service->get($id))) {
+            return back()->with('error', 'Não foi encontrar o usuário!');
+        }
+
+        return view('user.form', compact('data', 'title_table', 'title_action', 'title_function'));
+    }
+
     public function update(Request $request, $id)
     {
-        return $this->service->update($request, $id);
+        if (!$this->service->update($request, $id)) {
+            return back()->with('error', 'Não foi possível editar o usuário!');
+        }
+        return back()->with('success', 'Usuário editado com sucesso.');
     }
 
     public function delete($id)
