@@ -28,12 +28,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Users
-// Route::get('/', [UserController::class, 'index']);
-// // Route::get('/', [UserController::class, 'users'])->name('getListUser');
-// Route::get('/{id}', [UserController::class, 'get'])->name('getUser');
-// Route::post('/', [UserController::class, 'store'])->name('postUser');
-// Route::post('/{id}', [UserController::class, 'update'])->name('putUser');
 Route::get('/delete/{id}', [UserController::class, 'delete'])->name('deleteUser');
 Route::resource('user', 'UserController');
+
+// Users
+Route::get('/delete/{id}', [EmployeeController::class, 'delete'])->name('deleteEmployee');
+Route::resource('employee', 'EmployeeController');
 
 

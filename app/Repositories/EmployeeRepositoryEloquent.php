@@ -20,7 +20,7 @@ class EmployeeRepositoryEloquent implements EmployeeRepositoryInterface
 
     public function employees()
     {
-        return $this->model->all();
+        return $this->model->with('user')->findOrFail(1);
     }
 
     public function get($id)

@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use App\user;
 
 class Employee extends Model
 {
@@ -11,4 +12,9 @@ class Employee extends Model
         'office',
         'is_enabled'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,6 +13,33 @@ class EmployeeController extends Controller
     public function __construct(EmployeeService $service)
     {
         $this->service = $service;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $title_table = 'Funcionários';
+        $title_action = 'Tabela';
+        $employees = $this->service->employees();
+        // $data = Employee::with('user')->findOrFail(1);
+        return view('employee.list', compact('employees', 'title_table', 'title_action'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $title_table = 'Usuários';
+        $title_action = 'Formulário';
+        $title_function = 'Criar';
+        return view('user.form', compact('title_table', 'title_action', 'title_function'));
     }
 
     public function employees()
