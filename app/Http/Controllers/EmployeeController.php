@@ -24,9 +24,9 @@ class EmployeeController extends Controller
     {
         $title_table = 'Funcionários';
         $title_action = 'Tabela';
-        $employees = $this->service->employees();
+        $data = $this->service->employees();
         // $data = Employee::with('user')->findOrFail(1);
-        return view('employee.list', compact('employees', 'title_table', 'title_action'));
+        return view('employee.list', compact('data', 'title_table', 'title_action'));
     }
 
     /**
@@ -36,10 +36,10 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $title_table = 'Usuários';
+        $title_table = 'Funcionário';
         $title_action = 'Formulário';
         $title_function = 'Criar';
-        return view('user.form', compact('title_table', 'title_action', 'title_function'));
+        return view('employee.form', compact('title_table', 'title_action', 'title_function'));
     }
 
     public function employees()
@@ -54,16 +54,59 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        return $this->service->store($request);
+        if (!$this->service->store($request)) {
+            return back()->with('error', 'Não foi possível criar o cargo!');
+        }
+        return back()->with('success', 'Cargo criado com sucesso.');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $title_table = 'Funcionário';
+        $title_action = 'Detalhes';
+        $data = $this->service->get($id);
+        return view('employee.show', compact('data', 'title_table', 'title_action'));
+    }
+
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $title_table = 'Funcionário';
+        $title_action = 'Formulário';
+        $title_function = 'Editar';
+
+        if (!($data = $this->service->get($id))) {
+            return back()->with('error', 'Não foi encontrado o funcionário!');
+        }
+
+        return view('employee.form', compact('data', 'title_table', 'title_action', 'title_function'));
     }
 
     public function update(Request $request, $id)
     {
-        return $this->service->update($request, $id);
+        if (!$this->service->update($request, $id)) {
+            return back()->with('error', 'Não foi possível editar o cargo!');
+        }
+        return back()->with('success', 'Cargo editado com sucesso.');
     }
 
     public function delete($id)
     {
-        return $this->service->destroy($id);
+        if (!$this->service->destroy($id)) {
+            return back()->with('error', 'Não foi possível excluir o cargo!');
+        }
+
+        return back()->with('success', 'Cargo excluido com sucesso.');
     }
 }

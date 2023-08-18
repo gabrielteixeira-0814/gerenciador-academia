@@ -16,10 +16,11 @@ class EmployeeService
 
     public function store($request)
     {
-        $mensagens = [
-            'user_id.required' => 'O id do usuário é obrigatório!',
-            'user_id.int' => 'É necessário se do tipo INT!',
+         if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
 
+        $mensagens = [
             'office.required' => 'O nome do aparelho é obrigatório!',
             'office.string' => 'É necessário se do tipo String!',
             'office.min' => 'É necessário no mínimo 5 caracteres no nome do aparelho!',
@@ -30,7 +31,6 @@ class EmployeeService
         ];
 
         $data = $request->validate([
-            'user_id' => 'required|int',
             'office' => 'required|string|min:5|max:255',
             'is_enabled' => 'required|boolean'
         ], $mensagens);
@@ -50,10 +50,11 @@ class EmployeeService
 
     public function update($request, $id)
     {
-        $mensagens = [
-            'user_id.required' => 'O id do usuário é obrigatório!',
-            'user_id.int' => 'É necessário se do tipo INT!',
+        if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
 
+        $mensagens = [
             'office.required' => 'O nome do aparelho é obrigatório!',
             'office.string' => 'É necessário se do tipo String!',
             'office.min' => 'É necessário no mínimo 5 caracteres no nome do aparelho!',
@@ -64,7 +65,6 @@ class EmployeeService
         ];
 
         $data = $request->validate([
-            'user_id' => 'required|int',
             'office' => 'required|string|min:5|max:255',
             'is_enabled' => 'required|boolean'
         ], $mensagens);

@@ -20,21 +20,11 @@
           <div class="card-body">
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
-                <h5 class="card-title">Detalhes do Usuário</h5>
+                <h5 class="card-title">Detalhes do Funcionário</h5>
 
                 <div class="row mb-4">
-                  <div class="col-lg-3 col-md-4 label fw-bold">Nome</div>
-                  <div class="col-lg-9 col-md-8">{{ $data->name ?? '-' }}</div>
-                </div>
-
-                <div class="row mb-4">
-                  <div class="col-lg-3 col-md-4 label fw-bold">E-mail</div>
-                  <div class="col-lg-9 col-md-8">{{ $data->email ?? '-' }}</div>
-                </div>
-
-                <div class="row mb-4">
-                  <div class="col-lg-3 col-md-4 label fw-bold">Tipo de Usuário</div>
-                  <div class="col-lg-9 col-md-8">{{ $data->type ?? '-' }}</div>
+                  <div class="col-lg-3 col-md-4 label fw-bold">Cargo</div>
+                  <div class="col-lg-9 col-md-8">{{ $data->office ?? '-' }}</div>
                 </div>
 
                 <div class="row mb-4">

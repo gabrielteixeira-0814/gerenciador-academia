@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'employee_id',
         'password',
         'type',
         'is_enabled'
@@ -46,6 +47,6 @@ class User extends Authenticatable
     public function employee() {
 
         // O usuario tem muitas vendas
-        return $this->hasOne(Employee::class, 'user_id');
+        return $this->belongsTo(Employee::class, 'id');
     }
 }

@@ -47,25 +47,21 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">E-mail</th>
-                  <th scope="col">Tipo</th>
+                  <th scope="col">Cargo</th>
                   <th scope="col">Status</th>
                   <th scope="col">Ações</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($employees as $employee)
+                @foreach ($data as $employee)
                 <tr>
-                    <th scope="row">{{ $user->id ?? '-' }}</th>
-                    <td>{{ $employee->name ?? '-' }}</td>
-                    <td>{{ $employee->email ?? '-' }}</td>
-                    <td>{{ $employee->type ?? '-' }}</td>
+                    <th scope="row">{{ $employee->id ?? '-' }}</th>
+                    <td>{{ $employee->office ?? '-' }}</td>
                     <td>{{ $employee->is_enabled ? 'Ativo' :  'Inativo' }}</td>
                     <td>
-                        <a href='{{route('user.show',$employee->id)}}' class='btn btn-secondary btn-sm'><i class="bi bi-eye-fill"></i></a>
-                        <a href='{{route('user.edit',$employee->id)}}' class='btn btn-success btn-sm'><i class="bi bi-pencil"></i></a>
-                        <a href="{{route('deleteUser',$employee->id)}}" class='btn btn-danger btn-sm'><i class="bi bi-trash-fill"></i></a>
+                        <a href='{{ route('employee.show',$employee->id) }}' class='btn btn-secondary btn-sm'><i class="bi bi-eye-fill"></i></a>
+                        <a href='{{ route('employee.edit',$employee->id) }}' class='btn btn-success btn-sm'><i class="bi bi-pencil"></i></a>
+                        <a href="{{ route('deleteEmployee',$employee->id) }}" class='btn btn-danger btn-sm'><i class="bi bi-trash-fill"></i></a>
                     </td>
                   </tr>
                 @endforeach

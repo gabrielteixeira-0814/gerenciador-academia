@@ -8,13 +8,12 @@ use App\user;
 class Employee extends Model
 {
     protected $fillable = [
-        'user_id',
         'office',
         'is_enabled'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->hasMany(User::class, 'employee_id');
     }
 }

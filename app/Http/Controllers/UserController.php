@@ -113,6 +113,6 @@ class UserController extends Controller
             return back()->with('error', 'Não foi possível excluir o usuário!');
         }
 
-        return back()->with('success', 'Usuário criado com sucesso.');
+        return back()->with('success', 'Usuário excluido com sucesso.');
     }
 }

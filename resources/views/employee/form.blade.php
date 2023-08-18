@@ -50,7 +50,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ !isset($data) ? route('user.store') : route('user.update', $data->id)}}" method="POST" class="row g-3 justify-content-center">
+            <form action="{{ !isset($data) ? route('employee.store') : route('employee.update', $data->id)}}" method="POST" class="row g-3 justify-content-center">
                 @if (!isset($data))
                     @method('POST')
                 @else
@@ -62,8 +62,8 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="col-7">
-                    <label for="name" class="form-label">Nome</label>
-                    <input type="text" name="name" class="form-control" id="name" value="{{ isset($data) != '' ? $data->name :  old('name') }}">
+                    <label for="office" class="form-label">Cargo</label>
+                    <input type="text" name="office" class="form-control" id="office" value="{{ isset($data) != '' ? $data->office :  old('office') }}">
                 </div>
                 <div class="col-2" style="padding-top: 38px">
                     <div class="form-check">
@@ -73,28 +73,6 @@
                         </label>
                     </div>
                 </div>
-                <div class="col-9">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" value="{{ isset($data) != '' ? $data->email :  old('email') }}">
-                </div>
-                <div class="col-9">
-                    <label for="type" class="form-label">Tipo Usuário</label>
-                    <select id="type" name="type" class="form-select">
-                        <option value="comum" {{ isset($data) && $data->type ===  'comum' ? 'selected' :  '' }}>Comum</option>
-                        <option value="admin" {{ isset($data) && $data->type === 'admin' ? 'selected' :  '' }}>Admin</option>
-                    </select>
-                </div>
-
-                @if (!isset($data))
-                    <div class="col-9">
-                        <label for="password" class="form-label">Senha</label>
-                        <input type="password" name="password" class="form-control" id="password">
-                    </div>
-                    <div class="col-9">
-                        <label for="password_confirmation" class="form-label">Confirmar senha</label>
-                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation">
-                    </div>
-                @endif
                 <div class="text-end">
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>

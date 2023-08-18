@@ -14,9 +14,10 @@ class UpdateUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('type')->after('email')->nullable();
+            $table->integer('employee_id')->after('email')->unsigned();
+            $table->string('type')->nullable();
             $table->boolean('is_enabled')->after('password');
-
+            $table->foreign('employee_id')->references('id')->on('employees');
         });
     }
 
@@ -27,6 +28,9 @@ class UpdateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['employee_id']);
+        });
         Schema::dropIfExists('users');
     }
 }
