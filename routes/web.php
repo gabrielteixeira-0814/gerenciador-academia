@@ -31,8 +31,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/delete/{id}', [UserController::class, 'delete'])->name('deleteUser');
 Route::resource('user', 'UserController');
 
-// Users
+// Employee
 Route::get('/delete/{id}', [EmployeeController::class, 'delete'])->name('deleteEmployee');
 Route::resource('employee', 'EmployeeController');
+
+// Client_type
+Route::get('/delete/{id}', [Client_typeController::class, 'delete'])->name('deleteClient_type');
+Route::resource('client_type', 'Client_typeController');
 
 

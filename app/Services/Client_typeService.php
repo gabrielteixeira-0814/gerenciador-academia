@@ -18,14 +18,14 @@ class Client_typeService
     {
         $mensagens = [
             'type.required' => 'O nome do tipo do cliente é obrigatório!',
-            'type.min' => 'É necessário no mínimo 5 caracteres no tipo do cliente!',
+            'type.min' => 'É necessário no mínimo 3 caracteres no tipo do cliente!',
             'type.max' => 'É necessário no Máximo 255 caracteres no tipo do cliente!',
 
             'is_enabled.required' => 'O is_enabled do tipo do cliente é obrigatório!',
         ];
 
         $data = $request->validate([
-            'type' => 'required|string|min:5|max:255',
+            'type' => 'required|string|min:3|max:255',
             'is_enabled' => 'required|boolean',
 
         ], $mensagens);
