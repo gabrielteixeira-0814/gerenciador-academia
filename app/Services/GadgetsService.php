@@ -16,6 +16,10 @@ class GadgetsService
 
     public function store($request)
     {
+        if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
+
         $mensagens = [
             'name.required' => 'O nome do aparelho é obrigatório!',
             'name.string' => 'É necessário se do tipo String!',
@@ -57,6 +61,10 @@ class GadgetsService
 
     public function update($request, $id)
     {
+        if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
+
         $mensagens = [
             'name.required' => 'O nome do aparelho é obrigatório!',
             'name.string' => 'É necessário se do tipo String!',

@@ -75,13 +75,39 @@ class Client_typeController extends Controller
         return view('client_type.show', compact('data', 'title_table', 'title_action'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $title_table = 'Tipo de Cliente';
+        $title_action = 'Formulário';
+        $title_function = 'Editar';
+
+        if (!($data = $this->service->get($id))) {
+            return back()->with('error', 'Não foi encontrado o tipo de Cliente!');
+        }
+
+        return view('client_type.form', compact('data', 'title_table', 'title_action', 'title_function'));
+    }
+
     public function update(Request $request, $id)
     {
-        return $this->service->update($request, $id);
+        if (!$this->service->update($request, $id)) {
+            return back()->with('error', 'Não foi possível editar o tipo de Cliente!');
+        }
+        return back()->with('success', 'Tipo de Cliente editado com sucesso.');
     }
 
     public function delete($id)
     {
-        return $this->service->destroy($id);
+        if (!$this->service->destroy($id)) {
+            return back()->with('error', 'Não foi possível excluir o tipo de Cliente!');
+        }
+
+        return back()->with('success', 'Tipo de Cliente excluido com sucesso.');
     }
 }

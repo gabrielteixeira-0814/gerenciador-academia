@@ -108,7 +108,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{{ route('gadgets.index')}}">
           <i class="bi bi-person"></i>
           <span>Aparelhos</span>
         </a>

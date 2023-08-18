@@ -39,4 +39,6 @@ Route::resource('employee', 'EmployeeController');
 Route::get('/delete/{id}', [Client_typeController::class, 'delete'])->name('deleteClient_type');
 Route::resource('client_type', 'Client_typeController');
 
-
+// Client_type
+Route::get('/delete/{id}', [GadgetsController::class, 'delete'])->name('deleteGadgets');
+Route::resource('gadgets', 'GadgetsController');

@@ -16,6 +16,10 @@ class Client_typeService
 
     public function store($request)
     {
+        if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
+
         $mensagens = [
             'type.required' => 'O nome do tipo do cliente é obrigatório!',
             'type.min' => 'É necessário no mínimo 3 caracteres no tipo do cliente!',
@@ -45,6 +49,10 @@ class Client_typeService
 
     public function update($request, $id)
     {
+        if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
+
         $mensagens = [
             'type.required' => 'O nome do tipo do cliente é obrigatório!',
             'type.min' => 'É necessário no mínimo 5 caracteres no tipo do cliente!',
