@@ -41,7 +41,10 @@ class UserRepositoryEloquent implements UserRepositoryInterface
     public function getDataUser($cpf)
     {
         $findUser = $this->model->where('cpf', $cpf)->select('id','cpf','name','email')->get();
-        return response()->json($findUser[0]);
+        if ($findUser[0]) {
+            return response()->json($findUser[0]);
+        }
+        return response()->json("Não foi encontrado nenhum usuário");
     }
 }
 

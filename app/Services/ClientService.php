@@ -20,11 +20,14 @@ class ClientService
             $request['is_enabled'] = 0;
         }
 
+        if (!$request['is_employee']) {
+            $request['is_employee'] = 0;
+        }
+
         $mensagens = [
             'name.required' => 'O nome do cliente é obrigatório!',
             'name.string' => 'É necessário se do tipo string!',
 
-            'user_id.required' => 'O id do usuário é obrigatório!',
             'user_id.int' => 'É necessário se do tipo INT!',
 
             'client_type_id.required' => 'O id do tipo do cliente é obrigatório!',
@@ -39,16 +42,18 @@ class ClientService
             'height.required' => 'A altura do cliente é obrigatório!',
             'height.numeric' => 'É necessário se do tipo Numeric!',
 
+            'is_employee.required' => 'O is_employee do funciónario é obrigatório!',
             'is_enabled.required' => 'O is_enabled do tipo do cliente é obrigatório!',
         ];
 
         $data = $request->validate([
             'name' => 'required|string',
-            'user_id' => 'required|int',
+            'user_id' => 'int|nullable',
             'client_type_id' => 'required|int',
             'age' => 'required|int',
             'weight' => 'required|numeric',
             'height' => 'required|numeric',
+            'is_employee' => 'required|boolean',
             'is_enabled' => 'required|boolean',
 
         ], $mensagens);
@@ -72,11 +77,14 @@ class ClientService
             $request['is_enabled'] = 0;
         }
 
+        if (!$request['is_employee']) {
+            $request['is_employee'] = 0;
+        }
+
         $mensagens = [
             'name.required' => 'O nome do cliente é obrigatório!',
             'name.string' => 'É necessário se do tipo string!',
 
-            'user_id.required' => 'O id do usuário é obrigatório!',
             'user_id.int' => 'É necessário se do tipo INT!',
 
             'client_type_id.required' => 'O id do tipo do cliente é obrigatório!',
@@ -91,16 +99,18 @@ class ClientService
             'height.required' => 'A altura do cliente é obrigatório!',
             'height.numeric' => 'É necessário se do tipo Numeric!',
 
+            'is_employee.required' => 'O is_employee do funciónario é obrigatório!',
             'is_enabled.required' => 'O is_enabled do tipo do cliente é obrigatório!',
         ];
 
         $data = $request->validate([
             'name' => 'required|string',
-            'user_id' => 'required|int',
+            'user_id' => 'int|nullable',
             'client_type_id' => 'required|int',
             'age' => 'required|int',
             'weight' => 'required|numeric',
             'height' => 'required|numeric',
+            'is_employee' => 'required|boolean',
             'is_enabled' => 'required|boolean',
 
         ], $mensagens);

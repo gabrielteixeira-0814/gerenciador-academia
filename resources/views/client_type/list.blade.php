@@ -61,7 +61,7 @@
                     <td>
                         <a href='{{ route('client_type.show',$client_type->id) }}' class='btn btn-secondary btn-sm'><i class="bi bi-eye-fill"></i></a>
                         <a href='{{ route('client_type.edit',$client_type->id) }}' class='btn btn-success btn-sm'><i class="bi bi-pencil"></i></a>
-                        <a href="{{ route('deleteClient_type',$client_type->id) }}" class='btn btn-danger btn-sm'><i class="bi bi-trash-fill"></i></a>
+                        <a href="{{ route('delete_client_type',$client_type->id) }}" class='btn btn-danger btn-sm'><i class="bi bi-trash-fill"></i></a>
                     </td>
                   </tr>
                 @endforeach

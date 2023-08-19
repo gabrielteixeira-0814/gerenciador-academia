@@ -13,6 +13,7 @@ class MaintenanceController extends Controller
 
     public function __construct(MaintenanceService $service, GadgetsService $service_gadgets)
     {
+        $this->middleware('auth');
         $this->service = $service;
         $this->service_gadgets = $service_gadgets;
     }

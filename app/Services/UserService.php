@@ -48,6 +48,7 @@ class UserService
         ];
 
         $data = $request->validate([
+            'employee_id' => 'int|nullable',
             'name' => 'required|string|min:5|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:5|confirmed',

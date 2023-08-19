@@ -61,31 +61,51 @@
                 @error('name', 'email', 'type')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <div class="col-9">
+
+                <div class="col-2" style="padding-top: 38px">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="is_user" {{  isset($data->user_id) ? 'checked' :  '' }}>
+                        <label class="form-check-label" for="is_user">
+                            Usuário
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-2" style="padding-top: 38px">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="is_employee" name="is_employee" value="1" {{  isset($data) && $data->is_employee? 'checked' :  '' }}>
+                        <label class="form-check-label" for="is_employee">
+                            Funcionário
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-5" style="padding-top: 38px">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="is_enabled" name="is_enabled" value="1" {{  isset($data) && $data->is_enabled? 'checked' :  '' }}>
+                        <label class="form-check-label" for="is_enabled">
+                            Cliente Ativo
+                        </label>
+                    </div>
+                </div>
+                <div id="div_cpf" class="col-9">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control cpf" id="cpf" value="{{ isset($dataUser) != '' ? isset($dataUser->cpf) :  old('cpf') }}" placeholder="99999999999" name="cpf" {{ isset($dataUser) != '' ? "disabled" :  "" }}>
+                    <input type="text" class="form-control cpf" id="cpf" value="{{ isset($data->user->cpf) ? $data->user->cpf : old('cpf') }}" placeholder="99999999999">
                 </div>
 
                 <input type="hidden" class="form-control" id="user_id" name="user_id" value="">
 
-                <div class="col-7">
+                <div class="col-9">
                     <label for="name" class="form-label">Nome</label>
                     <input type="text" name="name" class="form-control" id="name" value="{{ isset($data) != '' ? $data->name :  old('name') }}">
                 </div>
-                <div class="col-2" style="padding-top: 38px">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="is_enabled" name="is_enabled" value="1" {{  isset($data) && $data->is_enabled? 'checked' :  '' }}>
-                        <label class="form-check-label" for="gridCheck1">
-                        Ativo
-                        </label>
-                    </div>
-                </div>
+
                 <div class="col-9">
                     <label for="client_type_id" class="form-label">Tipo de Cliente</label>
                     <select id="client_type_id" name="client_type_id" class="form-select">
                         <option>Selecione</option>
                         @foreach($list_clients_type AS $clients_type)
-                            <option value="{{ $clients_type->id }}" {{ isset($clients_type) && $clients_type->id ===  (isset($data->gadgets->id) ?? '') ? 'selected' :  '' }}>{{ $clients_type->type }}</option>
+                            <option value="{{ $clients_type->id }}" {{ $clients_type->id === ($data->clients_type->id ?? '') ? 'selected' :  '' }}>{{ $clients_type->type }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -97,12 +117,12 @@
 
                 <div class="col-9">
                     <label for="weight" class="form-label">Peso</label>
-                    <input type="text" name="weight" class="form-control" id="weight" value="{{ isset($data) != '' ? $data->age :  old('weight') }}">
+                    <input type="text" name="weight" class="form-control" id="weight" value="{{ isset($data) != '' ? $data->weight :  old('weight') }}">
                 </div>
 
                 <div class="col-9">
                     <label for="height" class="form-label">Altura</label>
-                    <input type="text" name="height" class="form-control" id="height" value="{{ isset($data) != '' ? $data->age :  old('height') }}">
+                    <input type="text" name="height" class="form-control" id="height" value="{{ isset($data) != '' ? $data->height :  old('height') }}">
                 </div>
 
                 <div class="text-end">
@@ -123,9 +143,33 @@
 
 
 <script>
-    $("#cpf").blur(function() {
+
+   if ($("#is_user").is(":checked")) {
+        $("#div_cpf").show();
         let cpf = $("#cpf").val();
 
+        findUserCpf(cpf);
+   } else {
+        $("#div_cpf").hide();
+   }
+
+    $("#is_user").click(function() {
+        if ($(this).is(":checked")) {
+
+            $("#div_cpf").show();
+        } else {
+            $("#div_cpf").hide();
+            $("#name").val('');
+            $("#user_id").val('');
+        }
+    });
+
+    $("#cpf").blur(function() {
+        let cpf = $("#cpf").val();
+        findUserCpf(cpf);
+    });
+
+    function findUserCpf(cpf) {
         $.ajax({
         type: "GET",
         url: "{{ route('user.getDataUser') }}",
@@ -133,17 +177,17 @@
         datatype: "json",
         success: function(data) {
 
-        if(data) {
-            $("#name").val(data.name);
-            $("#user_id").val(data.id);
+            if(data) {
+                $("#name").val(data.name);
+                $("#user_id").val(data.id);
 
-        }
-    },
+            }
+        },
         error: function (data) {
                 alert("Não há nenhum registro com esse CPF, verifique se está correto!");
             }
         });
-    });
+    }
 
 </script>
 

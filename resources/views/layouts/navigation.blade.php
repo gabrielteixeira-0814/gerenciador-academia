@@ -58,7 +58,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route("logout_web")}}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -78,11 +78,11 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="{{ route('home') }}">
           <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
+          <span>Página Inicial</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('user.index') }}">
           <i class="bi bi-person"></i>

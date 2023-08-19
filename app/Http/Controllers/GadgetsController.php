@@ -12,6 +12,7 @@ class GadgetsController extends Controller
 
     public function __construct(GadgetsService $service)
     {
+        $this->middleware('auth');
         $this->service = $service;
     }
 

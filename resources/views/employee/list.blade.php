@@ -61,7 +61,7 @@
                     <td>
                         <a href='{{ route('employee.show',$employee->id) }}' class='btn btn-secondary btn-sm'><i class="bi bi-eye-fill"></i></a>
                         <a href='{{ route('employee.edit',$employee->id) }}' class='btn btn-success btn-sm'><i class="bi bi-pencil"></i></a>
-                        <a href="{{ route('deleteEmployee',$employee->id) }}" class='btn btn-danger btn-sm'><i class="bi bi-trash-fill"></i></a>
+                        <a href="{{ route('delete_employee',$employee->id) }}" class='btn btn-danger btn-sm'><i class="bi bi-trash-fill"></i></a>
                     </td>
                   </tr>
                 @endforeach

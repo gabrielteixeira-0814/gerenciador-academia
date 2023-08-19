@@ -13,6 +13,7 @@ class ClientController extends Controller
 
     public function __construct(ClientService $service, Client_typeService $service_client_type)
     {
+        $this->middleware('auth');
         $this->service = $service;
         $this->service_client_type = $service_client_type;
     }
@@ -73,7 +74,7 @@ class ClientController extends Controller
     {
         $title_table = 'Cliente';
         $title_action = 'Detalhes';
-        $data = $this->service->get($id)[0];
+        $data = $this->service->get($id);
         return view('client.show', compact('data', 'title_table', 'title_action'));
     }
 
@@ -88,12 +89,15 @@ class ClientController extends Controller
         $title_table = 'Cliente';
         $title_action = 'Formulário';
         $title_function = 'Editar';
+        $list_clients_type = $this->service_client_type->clients_type();
 
         if (!($data = $this->service->get($id))) {
             return back()->with('error', 'Não foi encontrar o cliente!');
         }
 
-        return view('client.form', compact('data', 'title_table', 'title_action', 'title_function'));
+        //return $data;
+
+        return view('client.form', compact('data', 'title_table', 'title_action', 'title_function', 'list_clients_type'));
     }
 
     public function update(Request $request, $id)

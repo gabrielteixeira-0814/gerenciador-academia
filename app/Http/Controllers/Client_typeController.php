@@ -12,6 +12,7 @@ class Client_typeController extends Controller
 
     public function __construct(Client_typeService $service)
     {
+        $this->middleware('auth');
         $this->service = $service;
     }
 

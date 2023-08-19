@@ -66,7 +66,7 @@
                     <select id="gadgets_id" name="gadgets_id" class="form-select">
                         <option>Selecione</option>
                         @foreach($list_gadgets AS $gadgets)
-                            <option value="{{ $gadgets->id }}" {{ isset($gadgets) && $gadgets->id ===  (isset($data->gadgets->id) ?? '') ? 'selected' :  '' }}>{{ $gadgets->name }}</option>
+                            <option value="{{ $gadgets->id }}" {{ $gadgets->id ===  ($data->gadgets->id ?? '') ? 'selected' :  '' }}>{{ $gadgets->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -83,7 +83,7 @@
                 <div class="col-9">
                     <label for="inputDate" class="col-sm-12 col-form-label">Data do Agendamento</label>
                     <div class="col-sm-6">
-                      <input type="date" name="date" value="{{ isset($data->date) ?? '' }}" class="form-control">
+                      <input type="date" name="date" value="{{ $data->date ?? '' }}" class="form-control">
                     </div>
                 </div>
 

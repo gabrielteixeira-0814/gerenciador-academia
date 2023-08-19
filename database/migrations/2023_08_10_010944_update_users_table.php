@@ -14,7 +14,7 @@ class UpdateUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('employee_id')->after('email')->unsigned();
+            $table->integer('employee_id')->after('email');
             $table->string('cpf')->unique()->after('name');
             $table->string('type')->nullable();
             $table->boolean('is_enabled')->after('password');

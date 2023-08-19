@@ -59,13 +59,13 @@
                 <tr>
                     <th scope="row">{{ $client->id ?? '-' }}</th>
                     <td>{{ $client->name ?? '-' }}</td>
-                    <td>{{ $client->user->id ? 'SIM' : 'NÃO' }}</td>
+                    <td>{{ isset($client->user->id) ? 'SIM' : 'NÃO' }}</td>
                     <td>{{ $client->clients_type->type ?? '-' }}</td>
                     <td>{{ $client->is_enabled ? 'Ativo' :  'Inativo' }}</td>
                     <td>
                         <a href='{{route('client.show',$client->id)}}' class='btn btn-secondary btn-sm'><i class="bi bi-eye-fill"></i></a>
                         <a href='{{route('client.edit',$client->id)}}' class='btn btn-success btn-sm'><i class="bi bi-pencil"></i></a>
-                        <a href="{{route('deleteClient',$client->id)}}" class='btn btn-danger btn-sm'><i class="bi bi-trash-fill"></i></a>
+                        <a href="{{route('delete_client',$client->id)}}" class='btn btn-danger btn-sm'><i class="bi bi-trash-fill"></i></a>
                     </td>
                   </tr>
                 @endforeach
