@@ -20,7 +20,7 @@ class MaintenanceRepositoryEloquent implements MaintenanceRepositoryInterface
 
     public function maintenances()
     {
-        return $this->model->all();
+        return $this->model->with('gadgets')->get();
     }
 
     public function get($id)

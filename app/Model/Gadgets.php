@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Model\Maintenance;
 
 class Gadgets extends Model
 {
@@ -12,4 +13,9 @@ class Gadgets extends Model
         'quantity',
         'is_enabled'
     ];
+
+    public function maintenances()
+    {
+        return $this->hasMany(Maintenance::class, 'gadgets_id');
+    }
 }

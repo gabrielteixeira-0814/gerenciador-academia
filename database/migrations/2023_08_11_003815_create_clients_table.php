@@ -15,16 +15,16 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->integer('user_id')->unsigned();
-            $table->integer('employee_id')->unsigned();
             $table->integer('client_type_id')->unsigned();
-            $table->date('date');
+            // $table->date('date');
             $table->integer('age');
             $table->float('weight', 8, 2);
             $table->float('height', 8, 2);
+            $table->boolean('is_employee');
             $table->boolean('is_enabled');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('employee_id')->references('id')->on('employees');
             $table->foreign('client_type_id')->references('id')->on('clients_type');
             $table->timestamps();
         });
@@ -39,7 +39,6 @@ class CreateClientsTable extends Migration
     {
         Schema::table('clients', function (Blueprint $table) {
              $table->dropForeign(['user_id']);
-             $table->dropForeign(['employee_id']);
              $table->dropForeign(['client_type_id']);
          });
 

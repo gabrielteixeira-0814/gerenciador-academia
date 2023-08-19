@@ -84,7 +84,7 @@
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('user.index')}}">
+        <a class="nav-link collapsed" href="{{ route('user.index') }}">
           <i class="bi bi-person"></i>
           <span>Usuários</span>
         </a>
@@ -96,25 +96,25 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{{ route('client.index') }}">
           <i class="bi bi-person"></i>
           <span>Clientes</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('client_type.index')}}">
+        <a class="nav-link collapsed" href="{{ route('client_type.index') }}">
           <i class="bi bi-person"></i>
           <span>Tipos de Clientes</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('gadgets.index')}}">
+        <a class="nav-link collapsed" href="{{ route('gadgets.index') }}">
           <i class="bi bi-person"></i>
           <span>Aparelhos</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{{ route('maintenance.index') }}">
           <i class="bi bi-person"></i>
           <span>Manutenções</span>
         </a>

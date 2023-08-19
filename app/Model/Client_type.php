@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Model\Client;
 
 class Client_type extends Model
 {
@@ -12,4 +13,9 @@ class Client_type extends Model
         'type',
         'is_enabled',
     ];
+
+    public function clients()
+    {
+        return $this->hasMany(Client::class, 'id');
+    }
 }

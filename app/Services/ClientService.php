@@ -16,18 +16,19 @@ class ClientService
 
     public function store($request)
     {
+        if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
+
         $mensagens = [
+            'name.required' => 'O nome do cliente é obrigatório!',
+            'name.string' => 'É necessário se do tipo string!',
+
             'user_id.required' => 'O id do usuário é obrigatório!',
             'user_id.int' => 'É necessário se do tipo INT!',
 
-            'employee_id.required' => 'O id do funcionário é obrigatório!',
-            'employee_id.int' => 'É necessário se do tipo INT!',
-
             'client_type_id.required' => 'O id do tipo do cliente é obrigatório!',
             'client_type_id.int' => 'É necessário se do tipo INT!',
-
-            'date.required' => 'O data da entrada do cliente é obrigatório!',
-            'date.date' => 'É necessario se do tipo data!',
 
             'age.required' => 'A Idade do cliente é obrigatório!',
             'age.int' => 'É necessário se do tipo INT!',
@@ -42,10 +43,9 @@ class ClientService
         ];
 
         $data = $request->validate([
+            'name' => 'required|string',
             'user_id' => 'required|int',
-            'employee_id' => 'required|int',
             'client_type_id' => 'required|int',
-            'date' => 'required|date',
             'age' => 'required|int',
             'weight' => 'required|numeric',
             'height' => 'required|numeric',
@@ -68,18 +68,19 @@ class ClientService
 
     public function update($request, $id)
     {
+        if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
+
         $mensagens = [
+            'name.required' => 'O nome do cliente é obrigatório!',
+            'name.string' => 'É necessário se do tipo string!',
+
             'user_id.required' => 'O id do usuário é obrigatório!',
             'user_id.int' => 'É necessário se do tipo INT!',
 
-            'employee_id.required' => 'O id do funcionário é obrigatório!',
-            'employee_id.int' => 'É necessário se do tipo INT!',
-
             'client_type_id.required' => 'O id do tipo do cliente é obrigatório!',
             'client_type_id.int' => 'É necessário se do tipo INT!',
-
-            'date.required' => 'O data da entrada do cliente é obrigatório!',
-            'date.date' => 'É necessario se do tipo data!',
 
             'age.required' => 'A Idade do cliente é obrigatório!',
             'age.int' => 'É necessário se do tipo INT!',
@@ -94,10 +95,9 @@ class ClientService
         ];
 
         $data = $request->validate([
+            'name' => 'required|string',
             'user_id' => 'required|int',
-            'employee_id' => 'required|int',
             'client_type_id' => 'required|int',
-            'date' => 'required|date',
             'age' => 'required|int',
             'weight' => 'required|numeric',
             'height' => 'required|numeric',

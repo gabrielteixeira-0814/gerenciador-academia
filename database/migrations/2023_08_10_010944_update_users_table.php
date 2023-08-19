@@ -15,6 +15,7 @@ class UpdateUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('employee_id')->after('email')->unsigned();
+            $table->string('cpf')->unique()->after('name');
             $table->string('type')->nullable();
             $table->boolean('is_enabled')->after('password');
             $table->foreign('employee_id')->references('id')->on('employees');

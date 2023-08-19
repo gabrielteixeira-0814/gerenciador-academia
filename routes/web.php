@@ -28,8 +28,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Users
+Route::get('getDataUser', [UserController::class, 'getDataUser'])->name('user.getDataUser');
 Route::get('/delete/{id}', [UserController::class, 'delete'])->name('deleteUser');
 Route::resource('user', 'UserController');
+
+// Client
+Route::get('/delete/{id}', [ClientController::class, 'delete'])->name('deleteClient');
+Route::resource('client', 'ClientController');
 
 // Employee
 Route::get('/delete/{id}', [EmployeeController::class, 'delete'])->name('deleteEmployee');
@@ -39,6 +44,10 @@ Route::resource('employee', 'EmployeeController');
 Route::get('/delete/{id}', [Client_typeController::class, 'delete'])->name('deleteClient_type');
 Route::resource('client_type', 'Client_typeController');
 
-// Client_type
+// Gadgetsvo tb naGadgetsGadgets
 Route::get('/delete/{id}', [GadgetsController::class, 'delete'])->name('deleteGadgets');
 Route::resource('gadgets', 'GadgetsController');
+
+// Maintenance
+Route::get('/delete/{id}', [MaintenanceController::class, 'delete'])->name('deleteMaintenance');
+Route::resource('maintenance', 'MaintenanceController');

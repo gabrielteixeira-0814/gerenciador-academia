@@ -115,4 +115,10 @@ class UserController extends Controller
 
         return back()->with('success', 'Usuário excluido com sucesso.');
     }
+
+    public function getDataUser()
+    {
+        $cpf = $_GET['cpf'];
+        return $this->service->getDataUser($cpf);
+    }
 }

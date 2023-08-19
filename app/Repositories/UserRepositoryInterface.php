@@ -12,6 +12,8 @@ interface UserRepositoryInterface
     public function get($id);
     public function update(array $data, $id);
     public function destroy($id);
+    public function getDataUser($cpf);
+
 }
 
 

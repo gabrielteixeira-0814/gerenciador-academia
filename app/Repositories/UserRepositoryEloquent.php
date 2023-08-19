@@ -37,6 +37,12 @@ class UserRepositoryEloquent implements UserRepositoryInterface
     {
         return $this->model->find($id)->delete();
     }
+
+    public function getDataUser($cpf)
+    {
+        $findUser = $this->model->where('cpf', $cpf)->select('id','cpf','name','email')->get();
+        return response()->json($findUser[0]);
+    }
 }
 
 ?>

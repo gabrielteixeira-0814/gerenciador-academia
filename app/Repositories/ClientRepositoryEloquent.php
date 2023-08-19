@@ -20,12 +20,12 @@ class ClientRepositoryEloquent implements ClientRepositoryInterface
 
     public function clients()
     {
-        return $this->model->all();
+        return $this->model->with('user')->with('clients_type')->get();
     }
 
     public function get($id)
     {
-        return $this->model->findOrFail($id);
+        return $this->model->findOrFail($id)->with('user')->with('clients_type')->get();
     }
 
     public function update(array $data, $id)

@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="pagetitle">
-    <h1>{{ $title_table ? 'Aparelho' : '-' }}</h1>
+    <h1>{{ $title_table ? 'Manutenções' : '-' }}</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Inicial</a></li>
         <li class="breadcrumb-item">{{ $title_action ?? '-' }}</li>
-        <li class="breadcrumb-item">{{ $title_table ? 'Aparelho' : '-' }}</li>
+        <li class="breadcrumb-item">{{ $title_table ? 'Manutenções' : '-' }}</li>
         @if ($title_function)
         <li class="breadcrumb-item active">{{ $title_function ?? '-' }}</li>
         @endif
@@ -50,7 +50,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ !isset($data) ? route('gadgets.store') : route('gadgets.update', $data->id)}}" method="POST" class="row g-3 justify-content-center">
+            <form action="{{ !isset($data) ? route('maintenance.store') : route('maintenance.update', $data->id)}}" method="POST" class="row g-3 justify-content-center">
                 @if (!isset($data))
                     @method('POST')
                 @else
@@ -58,12 +58,17 @@
                 @endif
                 @csrf
 
-                @error('name', 'is_enabled', 'quantity', 'quantity')
+                @error('gadgets_id', 'is_enabled', 'date', 'interval')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="col-7">
-                    <label for="name" class="form-label">Nome</label>
-                    <input type="text" name="name" class="form-control" id="name" value="{{ isset($data) != '' ? $data->name :  old('name') }}">
+                    <label for="gadgets_id" class="form-label">Aparelhos</label>
+                    <select id="gadgets_id" name="gadgets_id" class="form-select">
+                        <option>Selecione</option>
+                        @foreach($list_gadgets AS $gadgets)
+                            <option value="{{ $gadgets->id }}" {{ isset($gadgets) && $gadgets->id ===  (isset($data->gadgets->id) ?? '') ? 'selected' :  '' }}>{{ $gadgets->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="col-2" style="padding-top: 38px">
@@ -76,17 +81,15 @@
                 </div>
 
                 <div class="col-9">
-                    <label for="quantity" class="form-label">Quantidade</label>
-                    <input type="quantity" name="quantity" class="form-control" id="quantity" value="{{ isset($data) != '' ? $data->quantity :  old('quantity') }}">
+                    <label for="inputDate" class="col-sm-12 col-form-label">Data do Agendamento</label>
+                    <div class="col-sm-6">
+                      <input type="date" name="date" value="{{ isset($data->date) ?? '' }}" class="form-control">
+                    </div>
                 </div>
 
                 <div class="col-9">
-                    <label for="description" class="col-sm-2 col-form-label">Descrição</label>
-                    <div class="col-sm-12">
-                        <textarea class="form-control" id="description" name="description" value="{{ isset($data) != '' ? $data->description :  old('description') }}" style="height: 100px">
-                            {{ $data->description ?? '' }}
-                        </textarea>
-                    </div>
+                    <label for="interval" class="form-label">Intervalo</label>
+                    <input type="text" name="interval" class="form-control" id="interval" value="{{ isset($data) != '' ? $data->interval :  old('interval') }}">
                 </div>
 
                 <div class="text-end">

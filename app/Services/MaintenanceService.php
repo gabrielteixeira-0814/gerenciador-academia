@@ -16,6 +16,10 @@ class MaintenanceService
 
     public function store($request)
     {
+        if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
+
         $mensagens = [
             'gadgets_id.required' => 'O id do aparelho é obrigatório!',
             'gadgets_id.int' => 'É necessário se do tipo INT!',
@@ -53,6 +57,10 @@ class MaintenanceService
 
     public function update($request, $id)
     {
+        if (!$request['is_enabled']) {
+            $request['is_enabled'] = 0;
+        }
+
         $mensagens = [
             'gadgets_id.required' => 'O nome do aparelho é obrigatório!',
             'gadgets_id.int' => 'É necessário se do tipo INT!',

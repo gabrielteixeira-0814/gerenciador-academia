@@ -125,6 +125,11 @@ class UserService
     {
         return $this->repo->destroy($id);
     }
+
+    public function getDataUser($cpf)
+    {
+        return $this->repo->getDataUser($cpf);
+    }
 }
 
 ?>

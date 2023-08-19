@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Model\Employee;
+use App\Model\Client;
 
 class User extends Authenticatable
 {
@@ -48,5 +49,10 @@ class User extends Authenticatable
 
         // O usuario tem muitas vendas
         return $this->belongsTo(Employee::class, 'id');
+    }
+
+    public function clients()
+    {
+        return $this->hasOne(Client::class, 'id');
     }
 }
