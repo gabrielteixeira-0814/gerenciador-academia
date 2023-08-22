@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Tables / Data - NiceAdmin Bootstrap Template</title>
+    <title>Academia</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -29,16 +29,13 @@
 
     <!-- Template Main CSS File -->
     <link href=" {{ asset('assets/css/style.css') }}" rel="stylesheet">
+
+
   </head>
 <body>
-        @include('layouts.navigation')
-        <main id="main" class="main">
-         @yield('content')
-        </main>
-
-
-
-        @include('layouts.footer')
+    <main style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(12, 12, 12, 0.8) 100%), url(../assets/img/academia-fundo2.jpg)">
+        @yield('content')
+    </main>
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
