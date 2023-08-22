@@ -77,31 +77,31 @@
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('employee.index')}}">
-          <i class="bi bi-person"></i>
+          <i class="bx bxs-user-account"></i>
           <span>Funcionários</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('client.index') }}">
-          <i class="bi bi-person"></i>
+          <i class="bx bx-book-alt"></i>
           <span>Clientes</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('client_type.index') }}">
-          <i class="bi bi-person"></i>
+          <i class="bx bx-book-content"></i>
           <span>Tipos de Clientes</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('gadgets.index') }}">
-          <i class="bi bi-person"></i>
+          <i class="bx bxs-basket"></i>
           <span>Aparelhos</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('maintenance.index') }}">
-          <i class="bi bi-person"></i>
+          <i class="bx bxs-wrench"></i>
           <span>Manutenções</span>
         </a>
       </li>

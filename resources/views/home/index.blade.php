@@ -12,7 +12,12 @@
         <div class="card">
           <div class="card-body">
             <div class="row">
-                <div class="col-8"><h5 class="card-title">ola</h5></div>
+                <div class="col-12 text-center">
+                    <i class="bx bx-wink-smile mt-5" style="font-size: 70px;"></i>
+                    <h5 class="card-title">
+                        Bem-Vindo ao Sistema de Gerenciamento da Academia
+                    </h5>
+                </div>
             </div>
           </div>
         </div>
