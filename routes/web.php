@@ -20,15 +20,10 @@ use App\Http\Controllers\EmployeeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('logout_web', [LoginController::class, 'logout'])->name('logout_web');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Users
 Route::get('getDataUser', [UserController::class, 'getDataUser'])->name('user.getDataUser');
