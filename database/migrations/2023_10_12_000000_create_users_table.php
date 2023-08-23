@@ -17,10 +17,15 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->unsignedBigInteger('employees_id')->nullable();
+            $table->string('cpf')->unique()->nullable();
+            $table->string('type')->nullable();
+            $table->boolean('is_enabled');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('employees_id')->references('id')->on('employees');
         });
     }
 
@@ -31,6 +36,9 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['employee_id']);
+        });
         Schema::dropIfExists('users');
     }
 }
