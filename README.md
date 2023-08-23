@@ -4,7 +4,7 @@
 </h1>
 
 <h1>
-  <img src="public/img/academia_gif.gif" />
+  <img src="public/assets/img/academia_gif.gif" />
 </h1>
 
 
