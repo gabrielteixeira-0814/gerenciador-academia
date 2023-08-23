@@ -27,7 +27,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6> {{ $users->name }}</h6>
-              <span> {{ $employee->office }}</span>
+              <span> {{ $employee->office ?? '-' }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
